@@ -1,13 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { BlogCardComponent } from '../../components/blog-card/blog-card.component';
+import { BlogPost } from '../../models/blog-post.model';
 
-interface BlogPost {
-  id: number;
-  title: string;
-  content: string;
-}
 
 @Component({
   standalone: true,
+  imports: [BlogCardComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })

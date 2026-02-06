@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  template: `<router-outlet />`
+  imports: [RouterOutlet,NavbarComponent],
+  template: `<app-navbar /><router-outlet />`
 })
 export class App {
   protected readonly title = signal('stage-blog-portfolio');

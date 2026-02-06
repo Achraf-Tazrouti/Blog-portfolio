@@ -1,0 +1,19 @@
+<h1>Admin login</h1>
+
+@if (error()) {
+  <p style="color:red;">Verkeerde login</p>
+}
+
+<input
+  type="text"
+  placeholder="Gebruikersnaam"
+  (input)="username.set($any($event.target).value)"
+/>
+
+<input
+  type="password"
+  placeholder="Wachtwoord"
+  (input)="password.set($any($event.target).value)"
+/>
+
+<button (click)="login()">Login</button>

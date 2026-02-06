@@ -1,7 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlogCardComponent } from '../../components/blog-card/blog-card.component';
-import { BlogPost } from '../../models/blog-post.model';
-
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   standalone: true,
@@ -10,16 +9,9 @@ import { BlogPost } from '../../models/blog-post.model';
   styleUrl: './blog.component.css'
 })
 export class BlogComponent {
-  posts = signal<BlogPost[]>([
-    {
-      id: 1,
-      title: 'Eerste stagedag',
-      content: 'Vandaag ben ik gestart aan mijn stage...'
-    },
-    {
-      id: 2,
-      title: 'Wat ik geleerd heb over Angular',
-      content: 'Standalone components en signals zijn 🔥'
-    }
-  ]);
+  posts;
+
+  constructor(private blogService: BlogService) {
+    this.posts = this.blogService.posts;
+  }
 }

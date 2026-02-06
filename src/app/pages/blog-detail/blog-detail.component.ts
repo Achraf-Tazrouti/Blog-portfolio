@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogPost } from '../../models/blog-post.model';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   standalone: true,
@@ -10,22 +11,12 @@ import { BlogPost } from '../../models/blog-post.model';
 export class BlogDetailComponent {
   post = signal<BlogPost | null>(null);
 
-  private allPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: 'Eerste stagedag',
-      content: 'Vandaag ben ik gestart aan mijn stage...'
-    },
-    {
-      id: 2,
-      title: 'Wat ik geleerd heb over Angular',
-      content: 'Standalone components en signals zijn 🔥'
-    }
-  ];
-
-  constructor(route: ActivatedRoute) {
+  constructor(
+    route: ActivatedRoute,
+    blogService: BlogService
+  ) {
     const id = Number(route.snapshot.paramMap.get('id'));
-    const found = this.allPosts.find(p => p.id === id);
+    const found = blogService.getPostById(id);
     this.post.set(found ?? null);
   }
 }

@@ -1,1 +1,6 @@
-<p>blog-detail works!</p>
+@if (post()) {
+  <h1>{{ post()!.title }}</h1>
+  <p>{{ post()!.content }}</p>
+} @else {
+  <p>Blogpost niet gevonden.</p>
+}

@@ -1,18 +1,30 @@
 <div class="card">
   <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+    <img style="width: 26px;"
+      src="/assets/Logo.jpg"
+      alt="AP Logo"
+      class="brand-logo"
+    />
+  </ng-template>
+    <ng-template pTemplate="item" let-item let-root="root">
+      <a pRipple class="flex items-center px-4 py-3 cursor-pointer gap-2">
+        <span>{{ item.label }}</span>
 
+        @if (item.shortcut) {
+          <span
+            class="ms-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
+            >{{ item.shortcut }}</span
+          >
+        }
+      </a>
+    </ng-template>
     <ng-template pTemplate="end">
       @if (true) {
-        <a
-          routerLink="/admin/dashboard"
-          class="menu-link admin-link"
-          routerLinkActive="active"
-        >
-          <i class="pi pi-cog"></i>
-          <span>Admin</span>
+        <a routerLink="/admin/dashboard" class="admin-link" routerLinkActive="active">
+          <i class="pi pi-cog admin-icon"></i>
         </a>
       }
     </ng-template>
-
   </p-menubar>
 </div>

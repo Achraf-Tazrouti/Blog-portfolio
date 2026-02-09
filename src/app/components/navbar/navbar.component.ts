@@ -1,11 +1,32 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [MenubarModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  items: MenuItem[] | undefined;
+
+  ngOnInit() {
+    this.items = [
+      {
+        label: 'Home',
+        icon: 'pi pi-home',
+        routerLink:'/'
+      },
+      {
+        label: 'Blog',
+        routerLink: '/blog',
+        icon: 'pi pi-envelope',
+      },
+      {
+        label: 'Over mij',
+      routerLink: '/about'
+      }
+    ];
+  }
+}

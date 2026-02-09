@@ -1,9 +1,18 @@
-<nav class="navbar">
-  <a routerLink="/" routerLinkActive="active">Home</a>
-  <a routerLink="/blog" routerLinkActive="active">Blog</a>
-  <a routerLink="/about" routerLinkActive="active">Over mij</a>
+<div class="card">
+  <p-menubar [model]="items">
 
-  @if (false) {
-    <a routerLink="/admin/dashboard">Admin</a>
-  }
-</nav>
+    <ng-template pTemplate="end">
+      @if (true) {
+        <a
+          routerLink="/admin/dashboard"
+          class="menu-link admin-link"
+          routerLinkActive="active"
+        >
+          <i class="pi pi-cog"></i>
+          <span>Admin</span>
+        </a>
+      }
+    </ng-template>
+
+  </p-menubar>
+</div>

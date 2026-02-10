@@ -1,3 +1,7 @@
 .admin-icon {
-	font-size: 1.25rem;
+  font-size: 1.55rem;
+  color: rgb(255, 0, 51);
+}
+.admin-icon:active{
+  color: rgb(255, 128, 0);
 }

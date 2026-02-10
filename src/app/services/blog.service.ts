@@ -21,4 +21,14 @@ export class BlogService {
   getPostById(id: number) {
     return this.posts().find(p => p.id === id);
   }
+  addPost(title: string, content: string) {
+  const newPost = {
+    id: Date.now(), // tijdelijk id
+    title,
+    content
+  };
+
+  this.postsSignal.update(posts => [newPost, ...posts]);
+}
+
 }

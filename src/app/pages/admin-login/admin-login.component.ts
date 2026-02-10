@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './admin-login.component.css'
 })
 export class AdminLoginComponent {
+
   username = signal('');
   password = signal('');
   error = signal(false);
@@ -18,15 +19,18 @@ export class AdminLoginComponent {
   ) {}
 
   login() {
-    const success = this.authService.login(
-      this.username(),
-      this.password()
-    );
+    this.error.set(false);
 
-    if (success) {
-      this.router.navigate(['/blog']);
-    } else {
-      this.error.set(true);
-    }
+    this.authService
+      .login(this.username(), this.password())
+      .subscribe({
+        next: (res) => {
+          this.authService.handleLoginSuccess(res.token);
+          this.router.navigate(['/admin']);
+        },
+        error: () => {
+          this.error.set(true);
+        }
+      });
   }
 }

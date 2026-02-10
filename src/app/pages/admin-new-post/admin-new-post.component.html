@@ -1,0 +1,15 @@
+<h1>Nieuwe blogpost</h1>
+
+<input
+  type="text"
+  placeholder="Titel"
+  (input)="title.set($any($event.target).value)"
+/>
+
+<textarea
+  placeholder="Content"
+  rows="6"
+  (input)="content.set($any($event.target).value)"
+></textarea>
+
+<button (click)="save()">Opslaan</button>

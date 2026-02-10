@@ -20,8 +20,8 @@
       </a>
     </ng-template>
     <ng-template pTemplate="end">
-      @if (true) {
-        <a routerLink="/admin/dashboard" class="admin-link" routerLinkActive="active">
+      @if (isLoggedIn) {
+        <a routerLink="/admin" class="admin-link">
           <i class="pi pi-cog admin-icon"></i>
         </a>
       }

@@ -15,8 +15,11 @@ export class BlogDetailComponent {
     route: ActivatedRoute,
     blogService: BlogService
   ) {
-    const id = Number(route.snapshot.paramMap.get('id'));
-    const found = blogService.getPostById(id);
-    this.post.set(found ?? null);
+    const id = route.snapshot.paramMap.get('id');
+
+    blogService.loadPosts().subscribe(() => {
+      const found = id ? blogService.getPostById(id) : undefined;
+      this.post.set(found ?? null);
+    });
   }
 }

@@ -1,34 +1,40 @@
 import { Injectable, signal } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import { BlogPost } from '../models/blog-post.model';
 
 @Injectable({ providedIn: 'root' })
 export class BlogService {
-  private postsSignal = signal<BlogPost[]>([
-    {
-      id: 1,
-      title: 'Eerste stagedag',
-      content: 'Vandaag ben ik gestart aan mijn stage...'
-    },
-    {
-      id: 2,
-      title: 'Wat ik geleerd heb over Angular',
-      content: 'Standalone components en signals zijn 🔥'
-    }
-  ]);
+  private readonly apiUrl = 'http://localhost:3000/api/posts';
 
-  posts = this.postsSignal.asReadonly();
+  private postsSignal = signal<BlogPost[]>([]);
+  readonly posts = this.postsSignal.asReadonly();
 
-  getPostById(id: number) {
-    return this.posts().find(p => p.id === id);
+  constructor(private http: HttpClient) {}
+
+  loadPosts() {
+    return this.http
+      .get<BlogPost[]>(this.apiUrl)
+      .pipe(tap((posts) => this.postsSignal.set(posts)));
   }
-  addPost(title: string, content: string) {
-  const newPost = {
-    id: Date.now(), // tijdelijk id
-    title,
-    content
-  };
 
-  this.postsSignal.update(posts => [newPost, ...posts]);
-}
+  getPostById(id: string) {
+    return this.posts().find((p) => p._id === id);
+  }
 
+  createPost(title: string, content: string, token: string) {
+    return this.http
+      .post<BlogPost>(this.apiUrl, { title, content }, { headers: this.authHeaders(token) })
+      .pipe(tap((newPost) => this.postsSignal.update((posts) => [newPost, ...posts])));
+  }
+
+  deletePost(id: string, token: string) {
+    return this.http
+      .delete<void>(`${this.apiUrl}/${id}`, { headers: this.authHeaders(token) })
+      .pipe(tap(() => this.postsSignal.update((posts) => posts.filter((p) => p._id !== id))));
+  }
+
+  private authHeaders(token: string) {
+    return new HttpHeaders({ Authorization: `Bearer ${token}` });
+  }
 }

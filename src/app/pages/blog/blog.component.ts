@@ -13,5 +13,6 @@ export class BlogComponent {
 
   constructor(private blogService: BlogService) {
     this.posts = this.blogService.posts;
+    this.blogService.loadPosts().subscribe();
   }
 }

@@ -3,7 +3,7 @@
 @if (posts().length === 0) {
   <p>Geen blogposts.</p>
 } @else {
-  @for (post of posts(); track post.id) {
+  @for (post of posts(); track post._id) {
     <app-blog-card [post]="post"></app-blog-card>
   }
 }

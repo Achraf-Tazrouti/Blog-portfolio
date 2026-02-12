@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   standalone: true,
@@ -10,8 +11,15 @@ import { AuthService } from '../../services/auth.service';
 export class AdminComponent {
   constructor(
     private authService: AuthService,
+    private blogService: BlogService,
     private router: Router
-  ) {}
+  ) {
+    this.blogService.loadPosts().subscribe();
+  }
+
+  get posts() {
+    return this.blogService.posts;
+  }
 
   logout() {
     this.authService.logout();
@@ -20,5 +28,12 @@ export class AdminComponent {
 
   goToNewPost() {
     this.router.navigate(['/admin/new']);
+  }
+
+  deletePost(id: string) {
+    const token = this.authService.getToken();
+    if (!token) return;
+
+    this.blogService.deletePost(id, token).subscribe();
   }
 }

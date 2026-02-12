@@ -14,6 +14,6 @@ export class BlogCardComponent {
   constructor(private router: Router) {}
 
   openPost() {
-    this.router.navigate(['/blog', this.post()?.id]);
+    this.router.navigate(['/blog', this.post()?._id]);
   }
 }

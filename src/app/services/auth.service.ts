@@ -12,7 +12,7 @@ export class AuthService {
 
   isLoggedIn = this.isLoggedInSignal.asReadonly();
 
-  private API_URL = 'http://localhost:3000/auth';
+  private API_URL = 'http://localhost:3000/api/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +26,10 @@ export class AuthService {
   handleLoginSuccess(token: string) {
     localStorage.setItem('token', token);
     this.isLoggedInSignal.set(true);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   logout() {

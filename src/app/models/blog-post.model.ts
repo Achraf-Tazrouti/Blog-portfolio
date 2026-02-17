@@ -4,4 +4,10 @@ export interface BlogPost {
   content: string;
   createdAt?: string;
   updatedAt?: string;
+
+  // Nieuwe velden voor home
+  focus?: string;
+  goal?: string;
+  status?: string;
+  skills?: string[];
 }

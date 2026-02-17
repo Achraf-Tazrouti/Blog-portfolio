@@ -1,5 +1,79 @@
-<h1>{{ title() }}</h1>
+﻿<section class="hero py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6 text-center text-lg-start">
+        <span class="badge text-uppercase fw-semibold">Stage 2025-2026</span>
+        <h1 class="display-5 fw-bold mt-3">Welkom op mijn stage blog</h1>
+        <p class="lead text-muted">
+          Op deze website documenteer ik mijn groei als developer tijdens mijn stage.
+          Je vindt hier inzichten, uitdagingen en wat ik elke week bijleer.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center justify-content-lg-start">
+          <a routerLink="/blog" class="btn btn-primary btn-lg">Bekijk alle blogposts</a>
+          <a href="#latest" class="btn btn-outline-secondary btn-lg">Ga naar de laatste post</a>
+        </div>
+        <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-lg-start">
+          <div class="stat">
+            <div class="small text-muted">Focus</div>
+            <div class="fw-bold">Frontend</div>
+          </div>
+          <div class="stat">
+            <div class="small text-muted">Doel</div>
+            <div class="fw-bold">Pro groei</div>
+          </div>
+          <div class="stat">
+            <div class="small text-muted">Status</div>
+            <div class="fw-bold">Actief</div>
+          </div>
+        </div>
+      </div>
 
-@if (true) {
-  <p>Home page werkt 🎉</p>
-}
+      <div class="col-lg-6">
+        <div class="hero-card p-4 p-md-5">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="small text-muted">Deze week</div>
+              <div class="h4 mb-0">Nieuwe skills</div>
+            </div>
+            <span class="badge bg-primary-subtle text-primary">Update</span>
+          </div>
+
+          <ul class="list-unstyled mt-4 mb-4">
+            <li class="d-flex gap-2 mb-2">
+              <span class="dot"></span>
+              <span>Componenten herbruikbaar maken</span>
+            </li>
+            <li class="d-flex gap-2 mb-2">
+              <span class="dot"></span>
+              <span>Responsive layouts met Bootstrap</span>
+            </li>
+            <li class="d-flex gap-2">
+              <span class="dot"></span>
+              <span>Schone en duidelijke UI</span>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="latest" class="latest-post py-5">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+      <div>
+        <h2 class="section-title mb-1">Laatste blogpost</h2>
+        <div class="text-muted">Een snelle blik op mijn meest recente update.</div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-8 col-lg-6">
+        @if (posts().length > 0) {
+          <app-blog-card [post]="posts()[0]"></app-blog-card>
+        }
+      </div>
+    </div>
+  </div>
+</section>

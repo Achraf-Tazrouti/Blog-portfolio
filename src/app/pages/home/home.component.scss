@@ -1,0 +1,48 @@
+﻿:host {
+  display: block;
+}
+
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #d01515 40%, #eef6ff 100%);
+}
+
+.hero .badge {
+  background: #0062ffba;
+  color: #1b4d9b;
+  border: 1px solid #cfe0ff;
+  letter-spacing: 0.06em;
+}
+
+.hero-card {
+  background: #b6b3b458;
+  border: 1px solid #eef1f4;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(18, 38, 63, 0.08);
+}
+
+
+.stat {
+  background: #f7f8fb;
+  border: 1px solid #eceff3;
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-width: 120px;
+}
+
+.latest-post {
+  background: #f8fafc;
+}
+
+.section-title {
+  font-weight: 700;
+}
+
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: #7d9ec9;
+  flex: 0 0 10px;
+}

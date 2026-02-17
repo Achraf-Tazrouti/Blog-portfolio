@@ -3,37 +3,62 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { BlogPost } from '../models/blog-post.model';
 
+// @Injectable maakt deze service beschikbaar in hele app
+// providedIn: 'root' = singleton pattern (1 instantie voor hele app)
 @Injectable({ providedIn: 'root' })
 export class BlogService {
+  // Backend API URL - waar je Express server draait
   private readonly apiUrl = 'http://localhost:3000/api/posts';
 
+  // PRIVATE signal - alleen BlogService kan dit updaten
   private postsSignal = signal<BlogPost[]>([]);
+  
+  // PUBLIC readonly versie - andere componenten kunnen enkel LEZEN
+  // .asReadonly() = bescherming zodat niemand anders de signal kan wijzigen
   readonly posts = this.postsSignal.asReadonly();
 
+  // HttpClient wordt geïnjecteerd - gebruikt voor API calls naar backend
   constructor(private http: HttpClient) {}
 
   loadPosts() {
     return this.http
-      .get<BlogPost[]>(this.apiUrl)
-      .pipe(tap((posts) => this.postsSignal.set(posts)));
+      .get<BlogPost[]>(this.apiUrl) 
+      .pipe(
+        tap((posts) => this.postsSignal.set(posts))  // tap = side effect: update signal met data van backend
+      );
   }
 
   getPostById(id: string) {
-    return this.posts().find((p) => p._id === id);
+    return this.posts().find((p) => p._id === id);  // posts() = roep signal aan als functie
   }
 
+  // Maakt nieuwe post aan (POST request naar backend)
   createPost(title: string, content: string, token: string) {
     return this.http
-      .post<BlogPost>(this.apiUrl, { title, content }, { headers: this.authHeaders(token) })
-      .pipe(tap((newPost) => this.postsSignal.update((posts) => [newPost, ...posts])));
+      .post<BlogPost>(
+        this.apiUrl, 
+        { title, content },  // Request body
+        { headers: this.authHeaders(token) }  // Authorization header voor JWT
+      )
+      .pipe(
+        tap((newPost) => 
+          this.postsSignal.update((posts) => [newPost, ...posts])  // Voeg nieuwe post toe aan BEGIN van array
+        )
+      );
   }
 
+  // Verwijdert post (DELETE request naar backend)
   deletePost(id: string, token: string) {
     return this.http
       .delete<void>(`${this.apiUrl}/${id}`, { headers: this.authHeaders(token) })
-      .pipe(tap(() => this.postsSignal.update((posts) => posts.filter((p) => p._id !== id))));
+      .pipe(
+        tap(() => 
+          this.postsSignal.update((posts) => posts.filter((p) => p._id !== id))  // Filter de verwijderde post uit array
+        )
+      );
   }
 
+  // Helper functie voor authentication headers (JWT token)
   private authHeaders(token: string) {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }

@@ -1,4 +1,16 @@
 <article class="card" (click)="openPost()">
-  <h3>{{ post()?.title }}</h3>
-  <p>{{ post()?.content }}</p>
+  <img src="./assets/Logo.jpg" class="card-img-top" alt="Blog afbeelding" style="height: 200px; object-fit: cover;">
+  
+  <div class="card-body">
+    <h5 class="card-title">{{ post()?.title }}</h5>
+    
+    <p class="card-text">
+      {{ getPreview() }}
+      @if(getPreview().length >= 150){
+        ....
+      }
+    </p>
+    
+    <span class="read-more">Lees meer →</span>
+  </div>
 </article>

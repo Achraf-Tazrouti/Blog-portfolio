@@ -6,7 +6,7 @@ import { BlogService } from '../../services/blog.service';
 @Component({
   standalone: true,
   templateUrl: './blog-detail.component.html',
-  styleUrl: './blog-detail.component.css'
+  styleUrl: './blog-detail.component.scss'
 })
 export class BlogDetailComponent {
   post = signal<BlogPost | null>(null);

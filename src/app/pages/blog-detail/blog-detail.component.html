@@ -1,6 +1,6 @@
 @if (post()) {
   <h1>{{ post()!.title }}</h1>
-  <p>{{ post()!.content }}</p>
+  <div [innerHTML]="post()?.content"></div>
 } @else {
   <p>Blogpost niet gevonden.</p>
 }

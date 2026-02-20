@@ -5,9 +5,10 @@ export interface BlogPost {
   createdAt?: string;
   updatedAt?: string;
 
-  // Nieuwe velden voor home
   focus?: string;
   goal?: string;
   status?: string;
   skills?: string[];
+
+  tags?: string[]; // <-- toevoegen
 }

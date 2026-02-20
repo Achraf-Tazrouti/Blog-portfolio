@@ -1,78 +1,212 @@
-﻿<section class="hero py-5">
-  <div class="container">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-6 text-center text-lg-start">
-        <span class="badge text-uppercase fw-semibold">Stage 2025-2026</span>
-        <h1 class="display-5 fw-bold mt-3">Welkom op mijn stage blog</h1>
-        <p class="lead text-muted">
-          Op deze website documenteer ik mijn groei als developer tijdens mijn stage.
-          Je vindt hier inzichten, uitdagingen en wat ik elke week bijleer.
+﻿<!-- ===== HERO SECTION ===== -->
+<section class="bg-dark text-white py-5 position-relative overflow-hidden">
+
+  <!-- Glow blob -->
+  <div class="hero-glow"></div>
+
+  <div class="container py-4 position-relative">
+    <div class="row align-items-center g-5">
+
+      <!-- Left: tekst -->
+      <div class="col-lg-7 text-center text-lg-start">
+
+        <!-- Badge -->
+        <span class="badge rounded-pill border border-primary text-primary fw-semibold px-3 py-2 mb-4 d-inline-flex align-items-center gap-2"
+              style="background: rgba(59,130,246,0.1); font-size: 0.75rem; letter-spacing: 0.06em;">
+          <span class="hero-dot"></span>
+          Werkplekleren – Stage 2025/2026
+        </span>
+
+        <h1 class="fw-bold mb-4 lh-sm" style="font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em;">
+          Mijn traject als<br>
+          <span class="text-primary">frontend developer</span><br>
+          in opleiding
+        </h1>
+
+        <p class="mb-5" style="color: rgba(249,250,251,0.65); font-size: 1.05rem; line-height: 1.7; max-width: 520px; margin-inline: auto;">
+          Tijdens mijn stage werk ik mee aan een bestaande webapplicatie
+          in een professionele omgeving. Hier documenteer ik mijn technische
+          groei, uitdagingen en inzichten.
         </p>
 
-        <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center justify-content-lg-start">
-          <a routerLink="/blog" class="btn btn-primary btn-lg">Bekijk alle blogposts</a>
-          <a href="#latest" class="btn btn-outline-secondary btn-lg">Ga naar de laatste post</a>
+        <!-- Buttons -->
+        <div class="d-flex flex-wrap gap-3 mb-5 justify-content-center justify-content-lg-start">
+          <a routerLink="/blog" class="btn btn-primary btn-lg px-4 shadow">
+            <i class="pi pi-book me-2"></i>Lees mijn blogposts
+          </a>
+          <a routerLink="/over-mij" class="btn btn-outline-light btn-lg px-4">
+            <i class="pi pi-user me-2"></i>Over mij
+          </a>
         </div>
 
-        <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-lg-start">
-          <div class="stat">
-            <div class="small text-muted">Focus</div>
-            <div class="fw-bold">{{ latestPost.focus || '—' }}</div>
+        <!-- Stats -->
+        <div class="d-flex flex-wrap align-items-center gap-4 justify-content-center justify-content-lg-start">
+          <div>
+            <div class="fw-bold text-white" style="font-size: 1.2rem;">{{ posts().length }}</div>
+            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(249,250,251,0.4);">Blogposts</div>
           </div>
-          <div class="stat">
-            <div class="small text-muted">Doel</div>
-            <div class="fw-bold">{{ latestPost.goal || '—' }}</div>
+          <div class="d-none d-sm-block" style="width: 1px; height: 30px; background: rgba(255,255,255,0.15);"></div>
+          <div>
+            <div class="fw-bold text-white" style="font-size: 1.2rem;">Angular</div>
+            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(249,250,251,0.4);">Framework</div>
           </div>
-          <div class="stat">
-            <div class="small text-muted">Status</div>
-            <div class="fw-bold">{{ latestPost.status || '—' }}</div>
+          <div class="d-none d-sm-block" style="width: 1px; height: 30px; background: rgba(255,255,255,0.15);"></div>
+          <div>
+            <div class="fw-bold text-white" style="font-size: 1.2rem;">.NET</div>
+            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(249,250,251,0.4);">Backend</div>
           </div>
         </div>
+
       </div>
 
-      <div class="col-lg-6">
-        <div class="hero-card p-4 p-md-5">
-          <div class="d-flex align-items-center justify-content-between">
-            <div>
-              <div class="small text-muted">Deze week</div>
-              <div class="h4 mb-0">Nieuwe skills</div>
+      <!-- Right: latest post card -->
+      <div class="col-lg-5 d-flex justify-content-center">
+        @if (latestPost) {
+          <div class="bg-white rounded-4 p-4 shadow-lg w-100" style="max-width: 430px; transition: transform 0.3s;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-primary fw-bold" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;">
+                <i class="pi pi-clock me-1"></i>Laatste update
+              </span>
+              <span class="text-muted" style="font-size: 0.75rem;">{{ formatDate(latestPost.createdAt) }}</span>
             </div>
-            <span class="badge bg-primary-subtle text-primary">Update</span>
-          </div>
 
-          <ul class="list-unstyled mt-4 mb-4">
-            @if (latestPost.skills?.length) {
-              @for (skill of latestPost!.skills!; track skill) {
-                <li class="d-flex gap-2 mb-2">
-                  <span class="dot"></span>
-                  <span>{{ skill }}</span>
-                </li>
-              }
-            } @else {
-              <li class="text-muted">Nog geen skills ingevuld.</li>
-            }
-          </ul>
-        </div>
+            <h5 class="fw-bold text-dark mb-2" style="line-height: 1.35;">{{ latestPost.title }}</h5>
+
+            <p class="text-muted mb-3" style="font-size: 0.875rem; line-height: 1.65;">
+              {{ excerpt(latestPost.content, 130) }}
+            </p>
+
+            <a [routerLink]="['/blog', latestPost._id]" class="btn btn-outline-primary btn-sm">
+              Lees volledige post <i class="pi pi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        } @else {
+          <div class="rounded-4 p-5 text-center w-100 d-flex flex-column align-items-center justify-content-center"
+               style="border: 2px dashed rgba(255,255,255,0.12); min-height: 200px;">
+            <i class="pi pi-inbox" style="font-size: 2.5rem; color: rgba(255,255,255,0.2);"></i>
+            <p class="text-muted mt-3 mb-0">Nog geen blogposts beschikbaar.</p>
+          </div>
+        }
       </div>
+
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="text-center pb-2 hero-scroll">
+    <div style="font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2);">Scroll</div>
+    <i class="pi pi-chevron-down" style="color: rgba(255,255,255,0.2);"></i>
   </div>
 </section>
 
-<section id="latest" class="latest-post py-5">
-  <div class="container">
-    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
-      <div>
-        <h2 class="section-title mb-1">Laatste blogpost</h2>
-        <div class="text-muted">Een snelle blik op mijn meest recente update.</div>
-      </div>
+<!-- ===== WAT DOE IK SECTION ===== -->
+<section class="py-5 bg-light">
+  <div class="container py-4">
+
+    <div class="text-center mb-5">
+      <div class="text-primary fw-bold mb-1" style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.13em;">Mijn rol</div>
+      <h2 class="fw-bold" style="letter-spacing: -0.02em;">Wat doe ik tijdens mijn stage?</h2>
+      <p class="text-muted">Mijn technische bijdrage binnen het project <strong>"Squid"</strong>.</p>
     </div>
 
     <div class="row g-4">
-      <div class="col-md-8 col-lg-6">
-        @if (posts().length > 0) {
-          <app-blog-card [post]="posts()[0]"></app-blog-card>
-        }
+
+      <!-- FRONTEND -->
+      <div class="col-sm-6 col-md-4">
+        <div class="bg-white rounded-3 p-4 border h-100 role-card">
+          <div class="rounded-3 mb-3 d-flex align-items-center justify-content-center"
+               style="width:50px; height:50px; background:#eff6ff; color:#3b82f6; font-size:1.3rem;">
+            <i class="pi pi-desktop"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Frontend ontwikkeling</h5>
+          <p class="text-muted mb-3" style="font-size: 0.875rem;">
+            Bouwen van de gebruikersinterface met Angular.
+            De frontend communiceert met een eigen backend via REST API-calls.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">Angular</span>
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">TypeScript</span>
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">Bootstrap</span>
+          </div>
+        </div>
       </div>
+
+      <!-- BACKEND -->
+      <div class="col-sm-6 col-md-4">
+        <div class="bg-white rounded-3 p-4 border h-100 role-card">
+          <div class="rounded-3 mb-3 d-flex align-items-center justify-content-center"
+              style="width:50px; height:50px; background:#f0fdf4; color:#22c55e; font-size:1.3rem;">
+            <i class="pi pi-server"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Backend & API</h5>
+          <p class="text-muted mb-3" style="font-size: 0.875rem;">
+            Implementeren van een bestaande database in een API-structuur voor Squid.
+            Verantwoordelijk voor communicatie tussen backend en frontend.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">.NET</span>
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">C#</span>
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">REST API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRUCTUUR -->
+      <div class="col-sm-6 col-md-4">
+        <div class="bg-white rounded-3 p-4 border h-100 role-card">
+          <div class="rounded-3 mb-3 d-flex align-items-center justify-content-center"
+               style="width:50px; height:50px; background:#fff7ed; color:#f97316; font-size:1.3rem;">
+            <i class="pi pi-code-slash"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Projectstructuur</h5>
+          <p class="text-muted mb-3" style="font-size: 0.875rem;">
+            Werken met aparte GitLab repositories voor frontend en backend,
+            inclusief versiebeheer, branching en professionele workflow.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">GitLab</span>
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">Git</span>
+            <span class="badge rounded-pill text-secondary border" style="background:#f1f5f9; font-size:0.7rem;">Branching</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+
+<!-- ===== RECENTE POSTS PREVIEW ===== -->
+@if (posts().length > 0) {
+  <section class="py-5 bg-white border-top">
+    <div class="container py-4">
+
+      <div class="d-flex justify-content-between align-items-end mb-5">
+        <div>
+          <div class="text-primary fw-bold mb-1" style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.13em;">Blog</div>
+          <h2 class="fw-bold mb-0" style="letter-spacing: -0.02em;">Recente posts</h2>
+        </div>
+        <a routerLink="/blog" class="text-primary fw-semibold text-decoration-none d-flex align-items-center gap-1" style="font-size: 0.875rem;">
+          Alle posts <i class="pi pi-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="row g-4">
+        @for (post of posts().slice(0, 3); track post._id) {
+          <div class="col-sm-6 col-md-4">
+            <a [routerLink]="['/blog', post._id]" class="text-decoration-none d-flex flex-column h-100 p-4 rounded-3 border bg-white post-card">
+              <div class="mb-2" style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: #9ca3af;">
+                {{ formatDate(post.createdAt) }}
+              </div>
+              <h6 class="fw-bold text-dark mb-2" style="font-size: 0.95rem; line-height: 1.4;">{{ post.title }}</h6>
+              <p class="text-muted flex-grow-1 mb-2" style="font-size: 0.83rem; line-height: 1.6;">{{ excerpt(post.content, 90) }}</p>
+              <span class="text-primary fw-semibold mt-2" style="font-size: 0.8rem;">
+                Lees meer <i class="pi pi-arrow-right" style="font-size: 0.7rem;"></i>
+              </span>
+            </a>
+          </div>
+        }
+      </div>
+
+    </div>
+  </section>
+}

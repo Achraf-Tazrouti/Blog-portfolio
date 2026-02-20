@@ -33,19 +33,34 @@ export class BlogService {
   }
 
   // Maakt nieuwe post aan (POST request naar backend)
-  createPost(title: string, content: string, token: string) {
-    return this.http
-      .post<BlogPost>(
-        this.apiUrl, 
-        { title, content },  // Request body
-        { headers: this.authHeaders(token) }  // Authorization header voor JWT
+  createPost(
+  title: string,
+  content: string,
+  token: string,
+  focus?: string,
+  goal?: string,
+  status?: string,
+  skills?: string[]
+) {
+  return this.http
+    .post<BlogPost>(
+      this.apiUrl,
+      {
+        title,
+        content,
+        focus,
+        goal,
+        status,
+        skills
+      },
+      { headers: this.authHeaders(token) }
+    )
+    .pipe(
+      tap((newPost) =>
+        this.postsSignal.update((posts) => [newPost, ...posts])
       )
-      .pipe(
-        tap((newPost) => 
-          this.postsSignal.update((posts) => [newPost, ...posts])  // Voeg nieuwe post toe aan BEGIN van array
-        )
-      );
-  }
+    );
+}
 
   // Verwijdert post (DELETE request naar backend)
   deletePost(id: string, token: string) {

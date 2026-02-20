@@ -1,15 +1,137 @@
-<h1>Nieuwe blogpost</h1>
+<!-- HERO -->
+<section class="bg-dark text-white py-5">
+  <div class="container">
 
-<input
-  type="text"
-  placeholder="Titel"
-  (input)="title.set($any($event.target).value)"
-/>
+    <a routerLink="/blog"
+       class="text-light text-decoration-none small opacity-75 d-inline-block mb-3">
+      ← Terug naar blog
+    </a>
 
-<textarea
-  placeholder="Content"
-  rows="6"
-  (input)="content.set($any($event.target).value)"
-></textarea>
+    <h1 class="display-5 fw-bold mb-3">
+      Nieuwe blogpost aanmaken
+    </h1>
 
-<button (click)="save()">Opslaan</button>
+    <p class="text-light opacity-75 col-lg-7">
+      Schrijf hier je wekelijkse stage-update.
+      Beschrijf wat je geleerd hebt, je technische uitdagingen
+      en hoe je bent gegroeid als developer.
+    </p>
+
+  </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="py-5 bg-light">
+  <div class="container" style="max-width: 900px;">
+
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+      <!-- CARD BODY -->
+      <div class="card-body p-4 p-md-5">
+
+        <!-- TITEL -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Titel</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="Geef je blogpost een duidelijke titel..."
+            (input)="title.set($any($event.target).value)"
+          />
+        </div>
+
+        <!-- FOCUS & DOEL -->
+        <div class="row g-4 mb-4">
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Focus</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Bv. Angular componenten"
+              (input)="focus.set($any($event.target).value)"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Doel</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Bv. Feature afwerken"
+              (input)="goal.set($any($event.target).value)"
+            />
+          </div>
+
+        </div>
+
+        <!-- STATUS & SKILLS -->
+        <div class="row g-4 mb-4">
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Status</label>
+            <select
+              class="form-select"
+              (change)="status.set($any($event.target).value)"
+            >
+              <option value="">Kies een status...</option>
+              <option value="draft">Draft</option>
+              <option value="gepubliceerd">Gepubliceerd</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Skills
+              <small class="text-muted">(komma gescheiden)</small>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Angular, TypeScript, Git..."
+              (input)="skillsText.set($any($event.target).value)"
+            />
+          </div>
+
+        </div>
+
+        <!-- INHOUD -->
+        <div class="mb-5">
+          <label class="form-label fw-semibold">Inhoud</label>
+          <textarea
+            rows="10"
+            class="form-control"
+            placeholder="Schrijf hier je blogpost..."
+            (input)="content.set($any($event.target).value)"
+          ></textarea>
+        </div>
+
+        <!-- VALIDATIE -->
+        @if (!title() || !content()) {
+          <div class="alert alert-warning mb-4">
+            Titel en inhoud zijn verplicht.
+          </div>
+        }
+
+        <!-- BUTTONS -->
+        <div class="d-flex justify-content-end gap-3">
+
+          <a routerLink="/blog"
+             class="btn btn-outline-secondary px-4">
+            Annuleren
+          </a>
+
+          <button
+            class="btn btn-primary btn-lg px-5 shadow"
+            (click)="save()"
+          >
+            Opslaan
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

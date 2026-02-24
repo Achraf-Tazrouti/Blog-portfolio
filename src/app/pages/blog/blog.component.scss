@@ -1,14 +1,15 @@
-.admin-hero {
-  background: linear-gradient(120deg, #111827 0%, #1f2937 55%, #0f172a 100%);
+.blog-hero {
+  background: linear-gradient(120deg, #f8fafc 0%, #eef2ff 40%, #f1f5f9 100%);
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.admin-pill {
+.blog-pill {
   background: rgba(59, 130, 246, 0.08);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
 }
 
-.admin-dot {
+.blog-dot {
   width: 8px;
   height: 8px;
   border-radius: 999px;
@@ -16,24 +17,43 @@
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
 }
 
-.admin-title {
+.blog-title {
   font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: -0.02em;
 }
 
-.admin-subtitle {
+.blog-subtitle {
   max-width: 520px;
   line-height: 1.7;
 }
 
-.admin-card {
+.blog-stat {
+  font-size: 1.1rem;
+}
+
+.blog-stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.blog-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(15, 23, 42, 0.15);
+}
+
+.blog-info-card {
+  width: 100%;
+  max-width: 420px;
   background: #ffffff;
   border-radius: 1rem;
   border: 1px solid #e2e8f0;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
-.admin-icon {
+.blog-icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
@@ -45,55 +65,31 @@
   font-size: 1.2rem;
 }
 
-.admin-card-title {
+.blog-card-title {
   font-weight: 700;
   color: #0f172a;
 }
 
-.admin-card-subtitle {
+.blog-card-subtitle {
   font-size: 0.8rem;
 }
 
-.admin-stat {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #0f172a;
+.blog-card-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
-.admin-stat-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-}
-
-.admin-grid {
-  background: #f8fafc;
-  border-top: 1px solid #e5e7eb;
-}
-
-.admin-section-label {
+.blog-section-label {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.13em;
 }
 
-.admin-section-title {
+.blog-section-title {
   letter-spacing: -0.02em;
 }
 
-.admin-list .list-group-item {
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  margin-bottom: 0.75rem;
-}
-
-.admin-list .list-group-item:last-child {
-  margin-bottom: 0;
-}
-
-.admin-status {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.blog-grid {
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
 }

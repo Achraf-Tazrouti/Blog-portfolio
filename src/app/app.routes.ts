@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/blog/blog.component').then((m) => m.BlogComponent),
   },
   {
+    path: 'over-mij',
+    loadComponent: () => import('./pages/over-mij/over-mij.component').then((m) => m.OverMijComponent),
+  },
+  {
     path: 'blog/:id',
     loadComponent: () =>
       import('./pages/blog-detail/blog-detail.component').then((m) => m.BlogDetailComponent),
@@ -32,5 +36,17 @@ export const routes: Routes = [
       import('./pages/admin-new-post/admin-new-post.component').then(
         (m) => m.AdminNewPostComponent,
       ),
+  },
+  {
+    path: 'admin/edit/:id',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./pages/admin-new-post/admin-new-post.component').then(
+        (m) => m.AdminNewPostComponent,
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];

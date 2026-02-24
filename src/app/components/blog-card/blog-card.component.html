@@ -1,16 +1,45 @@
-<article class="card" (click)="openPost()">
-  <img src="./assets/Logo.jpg" class="card-img-top" alt="Blog afbeelding" style="height: 200px; object-fit: cover;">
-  
-  <div class="card-body">
-    <h5 class="card-title">{{ post()?.title }}</h5>
-    
-    <p class="card-text">
+<p-card 
+  class="shadow-sm h-100 blog-card"
+  (click)="openPost()">
+
+    <!-- Image -->
+    <ng-template pTemplate="header">
+      <img 
+        src="./assets/Logo.jpg" 
+        alt="Blog afbeelding"
+        class="img-fluid w-100 blog-card-img">
+    </ng-template>
+
+    <!-- Title -->
+    <ng-template pTemplate="title">
+      {{ post()?.title }}
+    </ng-template>
+
+    <!-- Content preview -->
+    <p class="text-muted small">
       {{ getPreview() }}
-      @if(getPreview().length >= 150){
-        ....
+      @if (getPreview().length >= 150) {
+        <span>...</span>
       }
     </p>
-    
-    <span class="read-more">Lees meer →</span>
-  </div>
-</article>
+
+    <!-- Footer -->
+    <ng-template pTemplate="footer">
+      <div class="d-flex justify-content-between align-items-center">
+
+        <!-- Status -->
+        @if (post()?.status) {
+          <p-tag 
+            [value]="post()?.status" 
+            severity="success">
+          </p-tag>
+        }
+
+        <span class="text-primary fw-semibold">
+          Lees meer ->
+        </span>
+
+      </div>
+    </ng-template>
+
+  </p-card>

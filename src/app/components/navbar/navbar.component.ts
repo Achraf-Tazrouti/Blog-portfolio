@@ -17,7 +17,9 @@ import { AuthService } from '../../services/auth.service';
     BadgeModule,
     InputTextModule,
     RippleModule,
-    RouterLink  ],
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './navbar.component.html',
   styleUrls:['./navbar.component.css']
 })
@@ -52,7 +54,7 @@ export class NavbarComponent {
       },
       {
         label: 'Over mij',
-      routerLink: '/about'
+        routerLink: '/over-mij'
       }
     ];
   }

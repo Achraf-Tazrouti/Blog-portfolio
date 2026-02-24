@@ -1,9 +1,71 @@
-<h1>Blog</h1>
+<!-- ===== BLOG HERO ===== -->
+<section class="blog-hero py-5">
+  <div class="container py-3">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 text-center text-lg-start">
+        <span class="badge rounded-pill border border-primary text-primary fw-semibold px-3 py-2 mb-3 d-inline-flex align-items-center gap-2 blog-pill">
+          <span class="blog-dot"></span>
+          Stage blog
+        </span>
+        <h1 class="fw-bold mb-3 blog-title">Mijn blogposts</h1>
+        <p class="text-muted mb-4 blog-subtitle">
+          Updates, inzichten en leerpunten tijdens mijn stage. Alles wat ik bijleer over
+          frontend, backend en samenwerken in een professioneel team.
+        </p>
 
-@if (posts().length === 0) {
-  <p>Geen blogposts.</p>
-} @else {
-  @for (post of posts(); track post._id) {
-    <app-blog-card [post]="post"></app-blog-card>
-  }
-}
+        <div class="d-flex flex-wrap gap-4 justify-content-center justify-content-lg-start">
+          <div>
+            <div class="fw-bold text-dark blog-stat">{{ posts().length }}</div>
+            <div class="blog-stat-label">Posts</div>
+          </div>
+          <div class="d-none d-sm-block blog-divider"></div>
+          <div>
+            <div class="fw-bold text-dark blog-stat">Angular</div>
+            <div class="blog-stat-label">Focus</div>
+          </div>
+          <div class="d-none d-sm-block blog-divider"></div>
+          <div>
+            <div class="fw-bold text-dark blog-stat">2025/2026</div>
+            <div class="blog-stat-label">Stage</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 d-flex justify-content-center">
+        <div class="blog-info-card p-4 p-md-5">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="blog-icon">
+              <i class="pi pi-book"></i>
+            </div>
+            <div>
+              <div class="blog-card-title">Nieuwste updates</div>
+              <div class="text-muted blog-card-subtitle">Altijd de laatste posts</div>
+            </div>
+          </div>
+          <p class="text-muted mb-0 blog-card-text">
+            Elke post bevat een korte samenvatting, een duidelijke titel en een status
+            zodat je meteen ziet waar ik mee bezig ben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOG GRID ===== -->
+<section class="py-5 bg-white blog-grid">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <div class="text-primary fw-bold mb-1 blog-section-label">Blog</div>
+        <h2 class="fw-bold mb-0 blog-section-title">Alle posts</h2>
+      </div>
+    </div>
+
+    <div class="row g-4 align-items-stretch justify-content-center">
+      <div class="col-12 col-sm-6 col-lg-4" *ngFor="let post of posts()">
+        <app-blog-card [post]="post"></app-blog-card>
+      </div>
+    </div>
+  </div>
+</section>

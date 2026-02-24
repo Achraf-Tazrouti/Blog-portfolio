@@ -1,0 +1,77 @@
+.about-hero {
+  background: linear-gradient(120deg, #0f172a 0%, #1e293b 55%, #111827 100%);
+}
+
+.about-pill {
+  background: rgba(59, 130, 246, 0.12);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.about-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.about-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.about-subtitle {
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.about-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+.about-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+}
+
+.about-card-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.about-card-subtitle {
+  font-size: 0.8rem;
+}
+
+.about-card-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.about-grid {
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+}
+
+.about-info-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.about-info-title {
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,17 @@
+.admin-hero {
+  background: linear-gradient(120deg, #111827 0%, #1f2937 55%, #0f172a 100%);
+}
+
+.admin-form-card {
+  border: 1px solid #e5e7eb;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}

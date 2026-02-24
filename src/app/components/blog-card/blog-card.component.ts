@@ -1,12 +1,20 @@
 import { Component, input } from '@angular/core';
 import { BlogPost } from '../../models/blog-post.model';
 import { Router } from '@angular/router';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-blog-card',
   standalone: true,
   templateUrl: './blog-card.component.html',
   styleUrl: './blog-card.component.scss',
+  imports: [
+    CommonModule,
+    CardModule,
+    TagModule
+  ]
 })
 export class BlogCardComponent {
   post = input<BlogPost>();

@@ -8,7 +8,15 @@
     />
   </ng-template>
     <ng-template pTemplate="item" let-item let-root="root">
-      <a pRipple class="flex items-center px-4 py-3 cursor-pointer gap-2">
+      <a
+        pRipple
+        [routerLink]="item.routerLink"
+        routerLinkActive="active"
+        class="flex items-center px-4 py-3 cursor-pointer gap-2 nav-link"
+      >
+        @if (item.icon) {
+          <i class="{{ item.icon }}"></i>
+        }
         <span>{{ item.label }}</span>
 
         @if (item.shortcut) {

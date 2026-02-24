@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { BlogService } from '../../services/blog.service';
 
 @Component({
   standalone: true,
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrl: './admin.component.css',
+  imports: [CommonModule, RouterLink]
 })
 export class AdminComponent {
   constructor(

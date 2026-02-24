@@ -1,19 +1,46 @@
-<h1>Admin login</h1>
 
-@if (error()) {
-  <p style="color:red;">Verkeerde login</p>
-}
-
-<input
-  type="text"
-  placeholder="Gebruikersnaam"
-  (input)="username.set($any($event.target).value)"
-/>
-
-<input
-  type="password"
-  placeholder="Wachtwoord"
-  (input)="password.set($any($event.target).value)"
-/>
-
-<button (click)="login()">Login</button>
+<section class="login-hero text-white d-flex align-items-center min-vh-100">
+  <div class="container py-3 py-lg-5">
+    <div class="row justify-content-center align-items-center g-4">
+      <div class="col-12 col-lg-7 text-center text-lg-start mb-4 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
+        <span class="badge rounded-pill border border-primary text-primary fw-semibold px-3 py-2 mb-3 d-inline-flex align-items-center gap-2 login-pill">
+          <span class="login-dot"></span>
+          Admin
+        </span>
+        <h1 class="fw-bold mb-3 login-title">Admin login</h1>
+        <p class="text-light opacity-75 mb-4 login-subtitle">
+          Log in om blogposts te beheren, nieuwe updates te plaatsen en bestaande content aan te passen.
+        </p>
+      </div>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-5 d-flex justify-content-center justify-content-lg-end">
+        <div class="login-card p-4 p-md-5 shadow-lg w-100">
+          <h5 class="fw-bold mb-3 text-dark text-center">Inloggen</h5>
+          @if (error()) {
+            <div class="alert alert-danger py-2 mb-3 text-center">Verkeerde login</div>
+          }
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Gebruikersnaam</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Gebruikersnaam"
+              (input)="username.set($any($event.target).value)"
+              autocomplete="username"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Wachtwoord</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Wachtwoord"
+              (input)="password.set($any($event.target).value)"
+              autocomplete="current-password"
+            />
+          </div>
+          <button type="button" class="btn btn-primary w-100 btn-lg" (click)="login()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

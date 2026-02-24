@@ -1,11 +1,118 @@
-div {
-  line-height: 1.6;
+.detail-hero {
+  background: linear-gradient(120deg, #f8fafc 0%, #eef2ff 40%, #f1f5f9 100%);
+  border-bottom: 1px solid #e5e7eb;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
-ul {
-  margin-left: 20px;
+.detail-title {
+  font-size: clamp(2rem, 4.2vw, 2.8rem);
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  line-height: 1.2;
 }
 
-li {
-  margin-bottom: 6px;
+.detail-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.detail-badge {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+.detail-date {
+  font-size: 0.85rem;
+}
+
+.detail-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.detail-skill-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.detail-skill-title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.detail-skill {
+  font-size: 0.75rem;
+}
+
+.detail-body {
+  background: #f8fafc;
+}
+
+.detail-content {
+  max-width: 100%;
+  margin: 0;
+  line-height: 1.8;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.detail-content :is(h2, h3, h4) {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.detail-content p {
+  margin-bottom: 1rem;
+  color: #334155;
+}
+
+.detail-content ul,
+.detail-content ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.detail-content li {
+  margin-bottom: 0.5rem;
+  color: #334155;
+}
+
+.detail-content blockquote {
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #3b82f6;
+  background: #eff6ff;
+  color: #1e3a8a;
+  border-radius: 8px;
+}
+
+.detail-content img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 767px) {
+  .detail-hero {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .detail-content {
+    padding: 1.5rem;
+  }
 }

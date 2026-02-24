@@ -1,20 +1,24 @@
 <!-- HERO -->
-<section class="bg-dark text-white py-5">
+<section class="bg-dark text-white py-5 admin-hero">
   <div class="container">
 
     <a routerLink="/blog"
        class="text-light text-decoration-none small opacity-75 d-inline-block mb-3">
-      ← Terug naar blog
+      <- Terug naar blog
     </a>
 
     <h1 class="display-5 fw-bold mb-3">
-      Nieuwe blogpost aanmaken
+      {{ editingId() ? 'Blogpost aanpassen' : 'Nieuwe blogpost aanmaken' }}
     </h1>
 
     <p class="text-light opacity-75 col-lg-7">
-      Schrijf hier je wekelijkse stage-update.
-      Beschrijf wat je geleerd hebt, je technische uitdagingen
-      en hoe je bent gegroeid als developer.
+      @if (editingId()) {
+        Werk je bestaande post bij en pas je inhoud, focus of status aan.
+      } @else {
+        Schrijf hier je wekelijkse stage-update.
+        Beschrijf wat je geleerd hebt, je technische uitdagingen
+        en hoe je bent gegroeid als developer.
+      }
     </p>
 
   </div>
@@ -24,7 +28,7 @@
 <section class="py-5 bg-light">
   <div class="container" style="max-width: 900px;">
 
-    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden admin-form-card">
 
       <!-- CARD BODY -->
       <div class="card-body p-4 p-md-5">
@@ -36,6 +40,7 @@
             type="text"
             class="form-control form-control-lg"
             placeholder="Geef je blogpost een duidelijke titel..."
+            [value]="title()"
             (input)="title.set($any($event.target).value)"
           />
         </div>
@@ -49,6 +54,7 @@
               type="text"
               class="form-control"
               placeholder="Bv. Angular componenten"
+              [value]="focus()"
               (input)="focus.set($any($event.target).value)"
             />
           </div>
@@ -59,6 +65,7 @@
               type="text"
               class="form-control"
               placeholder="Bv. Feature afwerken"
+              [value]="goal()"
               (input)="goal.set($any($event.target).value)"
             />
           </div>
@@ -72,6 +79,7 @@
             <label class="form-label fw-semibold">Status</label>
             <select
               class="form-select"
+              [value]="status()"
               (change)="status.set($any($event.target).value)"
             >
               <option value="">Kies een status...</option>
@@ -89,6 +97,7 @@
               type="text"
               class="form-control"
               placeholder="Angular, TypeScript, Git..."
+              [value]="skillsText()"
               (input)="skillsText.set($any($event.target).value)"
             />
           </div>
@@ -102,6 +111,7 @@
             rows="10"
             class="form-control"
             placeholder="Schrijf hier je blogpost..."
+            [value]="content()"
             (input)="content.set($any($event.target).value)"
           ></textarea>
         </div>
@@ -125,7 +135,7 @@
             class="btn btn-primary btn-lg px-5 shadow"
             (click)="save()"
           >
-            Opslaan
+            {{ editingId() ? 'Wijzigingen opslaan' : 'Opslaan' }}
           </button>
 
         </div>

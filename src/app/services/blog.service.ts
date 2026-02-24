@@ -73,6 +73,30 @@ export class BlogService {
       );
   }
 
+  // Past bestaande post aan (PUT request naar backend)
+  updatePost(
+    id: string,
+    data: {
+      title: string;
+      content: string;
+      focus?: string;
+      goal?: string;
+      status?: string;
+      skills?: string[];
+    },
+    token: string
+  ) {
+    return this.http
+      .put<BlogPost>(`${this.apiUrl}/${id}`, data, { headers: this.authHeaders(token) })
+      .pipe(
+        tap((updated) =>
+          this.postsSignal.update((posts) =>
+            posts.map((p) => (p._id === updated._id ? updated : p))
+          )
+        )
+      );
+  }
+
   // Helper functie voor authentication headers (JWT token)
   private authHeaders(token: string) {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });

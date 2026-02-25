@@ -24,6 +24,7 @@
 .about-subtitle {
   max-width: 520px;
   line-height: 1.7;
+  margin-inline: auto;
 }
 
 .about-cta .btn {
@@ -230,5 +231,11 @@
     max-width: 320px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .about-subtitle {
+    margin-inline: 0;
   }
 }

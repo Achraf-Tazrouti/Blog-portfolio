@@ -35,6 +35,30 @@
   flex: 1 1 auto;
 }
 
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.blog-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+.blog-tag-more {
+  background: #f1f5f9;
+  color: #334155;
+}
+
 :host ::ng-deep .blog-card .p-card-title {
   font-size: 1.05rem;
   font-weight: 700;

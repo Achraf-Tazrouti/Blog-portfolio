@@ -23,6 +23,17 @@
       }
     </p>
 
+    @if (getSkills().length) {
+      <div class="blog-tags">
+        @for (skill of getVisibleSkills(); track skill) {
+          <span class="blog-tag">{{ skill }}</span>
+        }
+        @if (getHiddenSkillCount()) {
+          <span class="blog-tag blog-tag-more">+{{ getHiddenSkillCount() }}</span>
+        }
+      </div>
+    }
+
     <!-- Footer -->
     <ng-template pTemplate="footer">
       <div class="d-flex justify-content-between align-items-center">

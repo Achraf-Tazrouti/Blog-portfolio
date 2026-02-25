@@ -31,4 +31,17 @@ export class BlogCardComponent {
   const withoutHtml = raw.replace(/<[^>]*>/g, '');
   return withoutHtml.slice(0, 150);
 }
+
+  getSkills(): string[] {
+    return this.post()?.skills ?? [];
+  }
+
+  getVisibleSkills(max = 3): string[] {
+    return this.getSkills().slice(0, max);
+  }
+
+  getHiddenSkillCount(max = 3): number {
+    const total = this.getSkills().length;
+    return total > max ? total - max : 0;
+  }
 }

@@ -14,7 +14,7 @@
           plannen en codekwaliteit.
         </p>
 
-        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+        <div class="about-cta d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
           <a routerLink="/blog" class="btn btn-primary btn-lg px-4 shadow">
             Bekijk mijn blogs
           </a>
@@ -22,13 +22,32 @@
             Terug naar home
           </a>
         </div>
+
+        <div class="about-socials d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start mt-3">
+          <a
+            class="about-social-link"
+            href="https://www.linkedin.com/in/achraf-tazrouti-aa6425267/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            class="about-social-link"
+            href="https://github.com/Achraf-Tazrouti"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
       </div>
 
       <div class="col-lg-5 d-flex justify-content-center">
-        <div class="about-card p-4 p-md-5">
-          <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="about-card about-hero-card p-4 p-md-5">
+          <div class="about-card-header">
             <img src="assets/profile.jpeg" alt="Profielfoto" class="about-photo">
-            <div>
+            <div class="about-card-heading">
               <div class="about-card-title">Mijn profiel</div>
               <div class="text-muted about-card-subtitle">Stage 2025/2026</div>
             </div>
@@ -46,6 +65,10 @@
 <!-- CONTENT -->
 <section class="py-5 about-grid">
   <div class="container">
+    <div class="about-section-header">
+      <p class="about-section-kicker mb-2">Snelle samenvatting</p>
+      <h2 class="about-section-title">Mijn focus en stage</h2>
+    </div>
     <div class="row g-4">
       <div class="col-md-6 col-lg-4">
         <div class="about-info-card h-100">
@@ -69,6 +92,44 @@
           <p class="text-muted mb-0">
             Zelfstandig features kunnen bouwen en vertrouwen opbouwen in echte projecten.
           </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section-header mt-5">
+      <p class="about-section-kicker mb-2">Waar ik aan werk</p>
+      <h2 class="about-section-title">Stage-opdracht en rol</h2>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-lg-6">
+        <div class="about-info-card h-100">
+          <div class="about-info-title">Stage &amp; bedrijf</div>
+          <p class="text-muted mb-3">
+            Ik loop stage bij de ICT-afdeling van AP Hogeschool (Antwerpen).
+            Mijn opdracht is om bestaande webapplicaties die al ongeveer 13 jaar gebruikt worden
+            in Windows Forms te moderniseren met Angular als front-end.
+          </p>
+          <p class="text-muted mb-0">
+            De backend is een .NET API. De databank bestaat al en ik werk met Entity Framework,
+            models, configuration en validators om de data correct te ontsluiten naar de Angular-app.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-info-card h-100">
+          <div class="about-info-title">Mijn rol &amp; tools</div>
+          <p class="text-muted mb-3">
+            Ik werk full-stack: zowel front-end als back-end. Ik verdiep me verder in Angular
+            en de API-laag, en ik voeg UI-componenten toe waar nodig.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">Angular</span>
+            <span class="about-tag">.NET API</span>
+            <span class="about-tag">Entity Framework</span>
+            <span class="about-tag">Windows Forms → Web</span>
+            <span class="about-tag">PrimeNG</span>
+            <span class="about-tag">Bootstrap</span>
+          </div>
         </div>
       </div>
     </div>

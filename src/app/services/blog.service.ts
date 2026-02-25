@@ -2,13 +2,14 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { BlogPost } from '../models/blog-post.model';
+import { environment } from '../../environments/environment';
 
 // @Injectable maakt deze service beschikbaar in hele app
 // providedIn: 'root' = singleton pattern (1 instantie voor hele app)
 @Injectable({ providedIn: 'root' })
 export class BlogService {
   // Backend API URL - waar je Express server draait
-  private readonly apiUrl = 'http://localhost:3000/api/posts';
+  private readonly apiUrl = `${environment.apiBaseUrl}/api/posts`;
 
   // PRIVATE signal - alleen BlogService kan dit updaten
   private postsSignal = signal<BlogPost[]>([]);

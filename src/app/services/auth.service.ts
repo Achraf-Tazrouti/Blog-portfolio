@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   isLoggedIn = this.isLoggedInSignal.asReadonly();
 
-  private API_URL = 'http://localhost:3000/api/auth';
+  private API_URL = `${environment.apiBaseUrl}/api/auth`;
 
   constructor(private http: HttpClient) {}
 

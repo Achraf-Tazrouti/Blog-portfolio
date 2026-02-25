@@ -62,10 +62,28 @@
       </div>
     </div>
 
+    <div class="blog-filter">
+      <label class="blog-filter-label" for="tag-filter">Filter op tags</label>
+      <p-multiSelect
+        inputId="tag-filter"
+        [options]="tagOptions()"
+        [formControl]="selectedTagsControl"
+        optionLabel="label"
+        optionValue="value"
+        display="chip"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="Kies tags"
+        class="blog-filter-select"
+      ></p-multiSelect>
+    </div>
+
     <div class="row g-4 align-items-stretch justify-content-center">
-      <div class="col-12 col-sm-6 col-lg-4" *ngFor="let post of posts()">
-        <app-blog-card [post]="post"></app-blog-card>
-      </div>
+      @for (post of filteredPosts(); track post._id) {
+        <div class="col-12 col-sm-6 col-lg-4">
+          <app-blog-card [post]="post"></app-blog-card>
+        </div>
+      }
     </div>
   </div>
 </section>

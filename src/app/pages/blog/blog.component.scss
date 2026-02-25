@@ -25,6 +25,7 @@
 .blog-subtitle {
   max-width: 520px;
   line-height: 1.7;
+  margin-inline: auto;
 }
 
 .blog-stat {
@@ -77,6 +78,49 @@
 .blog-card-text {
   font-size: 0.9rem;
   line-height: 1.7;
+}
+
+.blog-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.blog-filter-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: #64748b;
+}
+
+:host ::ng-deep .blog-filter-select .p-multiselect {
+  width: 100%;
+}
+
+:host ::ng-deep .blog-filter-select .p-multiselect-label {
+  padding: 0.6rem 0.75rem;
+}
+
+:host ::ng-deep .blog-filter-select .p-multiselect-token {
+  margin-right: 0.35rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 576px) {
+  .blog-filter {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .blog-subtitle {
+    margin-inline: 0;
+  }
 }
 
 .blog-section-label {

@@ -15,3 +15,28 @@ textarea.form-control {
   border-color: #93c5fd;
   box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
 }
+
+@media (max-width: 576px) {
+  .admin-hero .display-5 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .admin-hero p {
+    font-size: 0.95rem;
+  }
+
+  .admin-form-card .card-body {
+    padding: 1.25rem;
+  }
+
+  .form-control-lg {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-lg {
+    font-size: 0.95rem;
+    padding: 0.55rem 1rem;
+  }
+}

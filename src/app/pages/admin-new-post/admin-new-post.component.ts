@@ -3,12 +3,16 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogService } from '../../services/blog.service';
 import { AuthService } from '../../services/auth.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   standalone: true,
   templateUrl: './admin-new-post.component.html',
   styleUrl: './admin-new-post.component.scss',
-  imports: [CommonModule, RouterLink]
+  imports: [CommonModule, RouterLink, ToastModule],
+  providers: [MessageService]
 })
 export class AdminNewPostComponent {
   title = signal('');
@@ -25,7 +29,8 @@ export class AdminNewPostComponent {
     private blogService: BlogService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -47,10 +52,24 @@ export class AdminNewPostComponent {
   }
 
   save() {
-    if (!this.title() || !this.content()) return;
+    if (!this.title() || !this.content()) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Verplicht',
+        detail: 'Titel en inhoud zijn verplicht.'
+      });
+      return;
+    }
 
     const token = this.authService.getToken();
-    if (!token) return;
+    if (!token) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Niet ingelogd',
+        detail: 'Log in om wijzigingen op te slaan.'
+      });
+      return;
+    }
 
     const skills = this.skillsText()
       .split(',')
@@ -69,7 +88,19 @@ export class AdminNewPostComponent {
     if (this.editingId()) {
       this.blogService
         .updatePost(this.editingId() as string, payload, token)
-        .subscribe(() => this.router.navigate(['/admin']));
+        .subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Opgeslagen',
+              detail: 'Blogpost is bijgewerkt.'
+            });
+            setTimeout(() => {
+              this.router.navigate(['/admin']);
+            }, 1200);
+          },
+          error: (err) => this.handleSaveError(err)
+        });
       return;
     }
 
@@ -83,7 +114,34 @@ export class AdminNewPostComponent {
         this.status() || undefined,
         skills.length ? skills : undefined
       )
-      .subscribe(() => this.router.navigate(['/blog']));
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Opgeslagen',
+            detail: 'Nieuwe blogpost is aangemaakt.'
+          });
+          this.router.navigate(['/blog']);
+        },
+        error: (err) => this.handleSaveError(err)
+      });
+  }
+
+  private handleSaveError(err: unknown) {
+    let detail = 'Controleer je login of backend.';
+    if (err instanceof HttpErrorResponse) {
+      if (err.status === 0) detail = 'Backend niet bereikbaar (server uit?).';
+      if (err.status === 401) detail = 'Niet ingelogd of token verlopen.';
+      if (err.status === 403) detail = 'Geen admin rechten of token ongeldig.';
+      if (err.status === 404) detail = 'Update-route niet gevonden op backend.';
+      if (err.status >= 500) detail = 'Serverfout in de backend.';
+    }
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Opslaan mislukt',
+      detail
+    });
+    console.error('Save failed', err);
   }
 
 }

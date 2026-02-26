@@ -13,8 +13,7 @@ export class AuthService {
 
   isLoggedIn = this.isLoggedInSignal.asReadonly();
 
-  private API_URL = `${environment.apiBaseUrl}/api/auth`;
-
+  private API_URL = `${environment.apiBaseUrl}/auth`;
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {

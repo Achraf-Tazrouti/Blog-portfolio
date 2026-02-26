@@ -9,8 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class BlogService {
   // Backend API URL - waar je Express server draait
-  private readonly apiUrl = `${environment.apiBaseUrl}/api/posts`;
-
+  private readonly apiUrl = `${environment.apiBaseUrl}/posts`;
   // PRIVATE signal - alleen BlogService kan dit updaten
   private postsSignal = signal<BlogPost[]>([]);
   
